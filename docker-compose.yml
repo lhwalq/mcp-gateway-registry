@@ -29,7 +29,7 @@ services:
       - /opt/mcp-gateway/models:/app/registry/models
       - /opt/ssl:/etc/ssl
       - /var/log/mcp-gateway:/app/logs
-      - /opt/mcp-gateway/auth_server/scopes.yml:/app/auth_server/scopes.yml
+      - /opt/mcp-gateway/auth_server:/app/auth_server:ro
     depends_on:
       - auth-server
     restart: unless-stopped
@@ -52,7 +52,7 @@ services:
       - "8888:8888"
     volumes:
       - /var/log/mcp-gateway:/app/logs
-      - /opt/mcp-gateway/auth_server/scopes.yml:/app/scopes.yml
+      - /opt/mcp-gateway/auth_server/scopes.yml:/app/scopes.yml:ro
     restart: unless-stopped
 
   # Current Time MCP Server
@@ -100,7 +100,7 @@ services:
     volumes:
       - /opt/mcp-gateway/servers:/app/registry/servers
       - /opt/mcp-gateway/models:/app/registry/models
-      - /opt/mcp-gateway/auth_server/scopes.yml:/app/auth_server/scopes.yml
+      - /opt/mcp-gateway/auth_server:/app/auth_server:ro
     ports:
       - "8003:8003"
     depends_on:
